@@ -5,4 +5,4 @@ export { default as Timeline } from './Timeline';
 export { default as HighlightCard } from './HighlightCard';
 export { default as ProjectCard } from './ProjectCard';
 export { default as WorkHistoryCard } from './WorkHistoryCard';
-export { default as ChatBubble } from './ChatBubble';
+// export { default as ChatBubble } from './ChatBubble';

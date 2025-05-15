@@ -40,3 +40,5 @@ export async function POST(req: NextRequest) {
   const answer = data.choices?.[0]?.message?.content || 'No answer.';
   return NextResponse.json({ answer });
 }
+
+// API route removed for static export (GitHub Pages)

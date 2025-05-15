@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig: NextConfig = {
-  // output: 'export', // Removed to enable API routes in local development
+  output: 'export', // Enable static export for GitHub Pages
   /* config options here */
 };
 

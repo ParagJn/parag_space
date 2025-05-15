@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const timelineData = [
   {
@@ -37,6 +37,22 @@ const timelineData = [
 
 const Timeline: React.FC = () => {
   const [selected, setSelected] = useState<number | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (selected === null) return;
+    const handleClick = (e: MouseEvent) => {
+      // Close if click is outside any open card
+      if (
+        cardRefs.current[selected] &&
+        !cardRefs.current[selected]?.contains(e.target as Node)
+      ) {
+        setSelected(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [selected]);
 
   return (
     <div className="relative flex flex-col items-center">
@@ -56,15 +72,24 @@ const Timeline: React.FC = () => {
               <div className={`font-semibold ${item.future ? 'text-slate-400' : 'text-slate-800'}`}>{item.title}</div>
               {item.subtitle && <div className="text-slate-500 text-sm">{item.subtitle}</div>}
             </div>
-            {/* Modal/Panel */}
+            {/* Floating Card */}
             {selected === idx && !item.future && (
-              <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50" onClick={() => setSelected(null)}>
-                <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full relative" onClick={e => e.stopPropagation()}>
-                  <button className="absolute top-2 right-2 text-slate-400 hover:text-blue-600" onClick={() => setSelected(null)} aria-label="Close">✕</button>
-                  <h4 className="text-xl font-bold mb-2">{item.title} <span className="text-slate-500 font-normal">({item.year})</span></h4>
-                  <div className="text-slate-600 mb-1">{item.subtitle}</div>
-                  <div className="text-slate-700">{item.description}</div>
-                </div>
+              <div
+                ref={el => { cardRefs.current[idx] = el; }}
+                className="absolute left-24 top-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 max-w-md w-[320px] z-30 animate-fade-in border border-slate-200"
+                tabIndex={-1}
+              >
+                <button
+                  className="absolute top-2 right-2 text-slate-400 hover:text-blue-600"
+                  onClick={() => setSelected(null)}
+                  aria-label="Close"
+                  tabIndex={0}
+                >
+                  ✕
+                </button>
+                <h4 className="text-xl font-bold mb-2">{item.title} <span className="text-slate-500 font-normal">({item.year})</span></h4>
+                <div className="text-slate-600 mb-1">{item.subtitle}</div>
+                <div className="text-slate-700">{item.description}</div>
               </div>
             )}
           </li>

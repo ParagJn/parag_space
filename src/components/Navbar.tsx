@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
         {/* Center: Navigation Links */}
         <div className="hidden md:flex gap-8 items-center">
           {navLinks.map(link => (
-            <Link key={link.name} href={link.href} className="text-slate-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-300 font-semibold text-base tracking-wide transition-colors duration-200 px-2 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <Link key={link.name} href={link.href} className="text-slate-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-300 font-semibold text-base tracking-wide transition-colors duration-200 px-2 py-1 rounded-lg focus:text-blue-600 dark:focus:text-blue-300 focus:outline-none focus:ring-0 active:text-blue-700">
               {link.name}
             </Link>
           ))}
@@ -100,7 +100,7 @@ const Navbar: React.FC = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-slate-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-300 font-semibold text-lg px-4 py-2 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="text-slate-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-300 font-semibold text-lg px-4 py-2 rounded-lg transition-colors duration-200 focus:text-blue-600 dark:focus:text-blue-300 focus:outline-none focus:ring-0 active:text-blue-700"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.name}

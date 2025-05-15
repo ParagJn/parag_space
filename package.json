@@ -1,5 +1,6 @@
 {
-  "name": "pj_profile_website",
+  "homepage": "https://your-username.github.io/parag_space",
+  "name": "parag_space",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "gh-pages": "^6.3.0",

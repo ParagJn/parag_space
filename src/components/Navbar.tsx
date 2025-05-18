@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
               <div className="flex items-center gap-4 mb-2">
                 <img src="/home_icon.png" alt="Profile" className="w-14 h-14 rounded-full shadow bg-white dark:bg-slate-800" />
                 <div>
-                  <h2 className="text-lg font-bold text-slate-800 dark:text-white leading-tight">Parag Jain</h2>
+                  <h2 className="text-lg font-bold text-slate-800 dark:text-white leading-tight">Pj</h2>
                   <span className="text-xs text-slate-500 dark:text-slate-400">Generative AI Architect</span>
                 </div>
               </div>

@@ -65,8 +65,9 @@ function getAllPageContent() {
 }
 
 export async function POST(req: NextRequest) {
-  const { messages } = await req.json();
-  const apiKey = process.env.OPENAI_API_KEY || process.env['OPENAI_API_KEY'];
+  const { messages, openaiApiKey } = await req.json();
+  // Try to get API key from request body, then env
+  const apiKey = openaiApiKey || process.env.OPENAI_API_KEY || process.env['OPENAI_API_KEY'];
   if (!apiKey) {
     return NextResponse.json({ answer: 'API key not set.' }, { status: 500 });
   }

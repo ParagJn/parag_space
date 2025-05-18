@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar, Footer } from '../components';
+import { Navbar, Footer, ChatBubble } from '../components';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,14 +24,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="light">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white min-h-screen flex flex-col`}
+        style={{ background: '#fff' }}
       >
         <Navbar />
-        <main className="flex-1 pt-16">{children}</main>
+        <main className="flex-1 pt-10 flex flex-col items-stretch justify-start" style={{ background: '#fff' }}>
+          {children}
+        </main>
         <Footer />
-        {/* <ChatBubble /> removed for static site */}
+        <ChatBubble />
       </body>
     </html>
   );

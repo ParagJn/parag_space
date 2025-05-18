@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
           )}
         </div>
         {/* Center: Navigation Links */}
-        <div className="hidden md:flex gap-8 items-center">
+        <div className="hidden md:flex gap-1.5 items-center">
           {navLinks.map(link => (
             <Link key={link.name} href={link.href} className="text-slate-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-300 font-semibold text-base tracking-wide transition-colors duration-200 px-2 py-1 rounded-lg focus:outline-none focus:ring-0 active:text-blue-700">
               {link.name}

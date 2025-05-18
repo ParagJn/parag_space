@@ -14,7 +14,7 @@ const Footer: React.FC = () => (
       Copyright © 2025. Site built & maintained by Parag Jain | <a href="mailto:paragjain@me.com" className="underline hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded transition-colors" aria-label="Email Parag Jain">paragjain@me.com</a> | India
     </div>
     <div className="text-xs text-slate-400 mt-1">
-      All respective company names and trademarks are the property of their respective owners. I have only included due to my professional association with them.
+      All respective company names and trademarks are the property of their respective owners/entities. I have only included due to my professional association with them.
     </div>
   </footer>
 );

@@ -9,18 +9,21 @@ export default function HomePage() {
           {/* Header Section */}
           <header className="mb-6 text-center pt-[25px]">
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-800 mb-2" style={{ fontFamily: 'Aptos Display, sans-serif' }}>Parag Jain</h1>
-            <h2 className="text-xl md:text-2xl text-blue-700 font-semibold mb-2">Generative AI Architect | Technology Strategist</h2>
+            <h2 className="text-xl md:text-2xl text-blue-700 font-semibold mb-2">Generative AI Architect | Technology Strategist | App Developer</h2>
             <p className="text-slate-600 italic mb-4">"Shaping intelligent automations   with AI-driven innovation."</p>
           </header>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Timeline Section (Left) */}
             <section>
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">Professional Timeline</h3>
+              <h3 className="text-2xl font-bold text-slate-800 mb-4">Chapters of My Career</h3>
+              <p className="text-xs text-slate-400 mb-2" style={{ fontSize: '0.7rem' }}>
+                Click on years to know more
+              </p>
               <Timeline />
             </section>
             {/* Skills & Experience Highlights (Right) */}
             <aside className="flex flex-col gap-4">
-              <h3 className="text-2xl font-bold text-slate-800 mb-2">Key Skills & Experience</h3>
+              <h3 className="text-2xl font-bold text-slate-800 mb-2">Strengths That Drive Results</h3>
               <div className="grid gap-3">
                 <div className="flex items-center gap-4 bg-gradient-to-r from-blue-50 to-white rounded-xl shadow p-4 border border-blue-100 hover:shadow-lg transition-all">
                   <span className="bg-blue-600 text-white rounded-full p-2 shadow text-xl">

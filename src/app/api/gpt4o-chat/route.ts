@@ -32,7 +32,6 @@ function getAllPageContent() {
   // Add project cards info
   let projectsInfo = '';
   try {
-    // Use a relative path from the API route file to the data file
     const projects = require('../../../data/projects').default;
     projectsInfo = '\n\nProjects List:\n' + projects.map((p: any, i: number) => {
       return `${i+1}. ${p.name}\n   Description: ${p.description.replace(/\n/g, ' ')}\n   Technologies: ${p.tech.join(', ')}`;
@@ -40,7 +39,17 @@ function getAllPageContent() {
   } catch {
     projectsInfo = '\n[Could not load project cards info]';
   }
-  return staticContent + projectsInfo;
+  // Add timeline info
+  let timelineInfo = '';
+  try {
+    const timeline = require('../../../data/timeline').default;
+    timelineInfo = '\n\nProfessional Timeline:\n' + timeline.map((t: any, i: number) => {
+      return `${t.year}: ${t.title}${t.subtitle ? ' - ' + t.subtitle : ''}\n   ${t.description.replace(/\n/g, ' ')}`;
+    }).join('\n');
+  } catch {
+    timelineInfo = '\n[Could not load timeline info]';
+  }
+  return staticContent + projectsInfo + timelineInfo;
 }
 
 export async function POST(req: NextRequest) {

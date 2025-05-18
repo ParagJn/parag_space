@@ -60,7 +60,7 @@ The assets are modular and reusable, allowing for easy integration into existing
   {
     year: currentYear,
     title: "What's next?",
-    description: 'Possibilities are exciting and endless.',
+    description: 'Endless opportunities--driven by innovation and imagination.',
     future: true,
   },
 ];

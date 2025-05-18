@@ -31,7 +31,27 @@ export default function HomePage() {
                     key={s.title}
                     className={`flex items-center gap-4 bg-gradient-to-r ${s.icon === 'engagement' ? 'from-orange-100' : s.icon === 'leadership' ? 'from-cyan-100' : `from-${s.color}-50`} to-white rounded-xl shadow p-4 border ${s.icon === 'engagement' ? 'border-orange-200' : s.icon === 'leadership' ? 'border-cyan-200' : `border-${s.color}-100`} hover:shadow-lg transition-all`}
                   >
-                    <span className={`${s.icon === 'engagement' ? 'bg-orange-500' : s.icon === 'leadership' ? 'bg-cyan-600' : `bg-${s.color}-600`} text-white rounded-full p-2 shadow text-xl`}>
+                    <span
+                      className="flex items-center justify-center rounded-full p-2 shadow text-xl"
+                      style={{
+                        background:
+                          s.icon === 'ai'
+                            ? 'linear-gradient(135deg, #2563eb 60%, #1e40af 100%)'
+                            : s.icon === 'architecture'
+                            ? 'linear-gradient(135deg, #22c55e 60%, #15803d 100%)'
+                            : s.icon === 'engagement'
+                            ? 'linear-gradient(135deg, #f97316 60%, #ea580c 100%)'
+                            : s.icon === 'leadership'
+                            ? 'linear-gradient(135deg, #06b6d4 60%, #0e7490 100%)'
+                            : s.icon === 'lightbulb'
+                            ? 'linear-gradient(135deg, #a78bfa 60%, #7c3aed 100%)'
+                            : '#e5e7eb', // fallback for unknown
+                        color: '#fff',
+                        minWidth: 40,
+                        minHeight: 40,
+                        boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)',
+                      }}
+                    >
                       {/* Icon selection */}
                       {s.icon === 'lightbulb' && (
                         <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 1 7 7c0 2.5-1.5 4.5-3 6a3.5 3.5 0 0 1-7 0c-1.5-1.5-3-3.5-3-6a7 7 0 0 1 7-7z"/></svg>

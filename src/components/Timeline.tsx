@@ -62,7 +62,7 @@ const Timeline: React.FC = () => {
 	};
 
 	// Animation delay for each year
-	const getAnimDelay = (idx: number) => `${idx * 120}ms`;
+	const getAnimDelay = (idx: number) => `${idx * 200}ms`;
 
 	return (
 		<div className="relative flex flex-col items-center">

@@ -76,11 +76,30 @@ const Navbar: React.FC = () => {
         </div>
         {/* Right: Navigation Links */}
         <div className="hidden md:flex gap-1.5 items-center absolute right-0 top-0 h-16 pr-4 min-w-[320px] justify-end">
-          {navLinks.map(link => (
-            <Link key={link.name} href={link.href} className="text-slate-700 hover:text-blue-600 font-semibold text-base tracking-wide transition-colors duration-200 px-2 py-1 rounded-lg focus:outline-none focus:ring-0 active:text-blue-700">
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map(link => {
+            const isInternal = link.href.startsWith('/');
+            return isInternal ? (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-slate-700 hover:text-blue-600 font-semibold text-base tracking-wide transition-colors duration-200 px-2 py-1 rounded-lg focus:outline-none focus:ring-0 active:text-blue-700"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-slate-700 hover:text-blue-600 font-semibold text-base tracking-wide transition-colors duration-200 px-2 py-1 rounded-lg focus:outline-none focus:ring-0 active:text-blue-700"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            );
+          })}
         </div>
         {/* Center: Spacer (flex-grow) for mobile menu button */}
         <div className="flex-1" />
@@ -99,16 +118,30 @@ const Navbar: React.FC = () => {
       {menuOpen && (
         <div className="md:hidden bg-white/95 shadow-xl border-t border-slate-100 animate-fadeIn">
           <div className="flex flex-col items-center gap-6 py-6">
-            {navLinks.map(link => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-slate-700 hover:text-blue-600 font-semibold text-lg px-4 py-2 rounded-lg transition-colors duration-200 focus:text-blue-600 focus:outline-none focus:ring-0 active:text-blue-700"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map(link => {
+              const isInternal = link.href.startsWith('/');
+              return isInternal ? (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-slate-700 hover:text-blue-600 font-semibold text-lg px-4 py-2 rounded-lg transition-colors duration-200 focus:text-blue-600 focus:outline-none focus:ring-0 active:text-blue-700"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-slate-700 hover:text-blue-600 font-semibold text-lg px-4 py-2 rounded-lg transition-colors duration-200 focus:text-blue-600 focus:outline-none focus:ring-0 active:text-blue-700"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
           </div>
         </div>
       )}

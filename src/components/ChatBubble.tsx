@@ -50,11 +50,50 @@ const ChatBubble: React.FC = () => {
     try {
       const res = await fetch('/api/gpt4o-chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({ messages: newMessages, openaiApiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, stream: true }),
       });
-      const data = await res.json();
-      setMessages([...newMessages, { role: 'assistant', content: data.answer }]);
+      const contentType = res.headers.get('content-type') || '';
+      if (contentType.includes('text/event-stream')) {
+        if (!res.body) throw new Error('No response body');
+        const reader = res.body.getReader();
+        let answer = '';
+        setMessages([...newMessages, { role: 'assistant', content: '' }]);
+        let done = false;
+        while (!done) {
+          const { value, done: doneReading } = await reader.read();
+          done = doneReading;
+          if (value) {
+            const chunk = new TextDecoder().decode(value);
+            answer += chunk;
+            setMessages(msgs => {
+              const updated = [...msgs];
+              updated[updated.length - 1] = { role: 'assistant', content: answer };
+              return updated;
+            });
+          }
+        }
+      } else {
+        // fallback: normal JSON
+        const data = await res.json();
+        // Check if the user is asking about contacting Parag
+        const contactRegex = /how (can|do) (i|we)? ?(contact|reach|email|call|connect|talk to) (parag|you)/i;
+        if (contactRegex.test(input)) {
+          setMessages([
+            ...newMessages,
+            {
+              role: 'assistant',
+              content:
+                '📢 For contact details, please click the contact card at the top left of the screen.'
+            }
+          ]);
+        } else {
+          setMessages([...newMessages, { role: 'assistant', content: data.answer }]);
+        }
+      }
     } catch {
       setMessages([...newMessages, { role: 'assistant', content: 'Sorry, there was an error.' }]);
     }

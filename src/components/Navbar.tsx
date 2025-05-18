@@ -6,6 +6,7 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Projects', href: '/projects' },
   { name: 'Work History', href: '/work-history' },
+  { name: 'Consulting Services', href: '/consulting-services' },
 ];
 
 const Navbar: React.FC = () => {
@@ -30,12 +31,12 @@ const Navbar: React.FC = () => {
         <div className="relative flex items-center">
           <button
             onClick={() => setContactOpen((v) => !v)}
-            className="group flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform hover:scale-105"
+            className="group flex items-center gap-2 focus:outline-none focus:ring-0 focus:border-0 active:outline-none active:ring-0 active:border-0 transition-transform hover:scale-105"
             aria-label="Open contact card"
             style={{ WebkitTapHighlightColor: 'transparent' }}
           >
-            <img src="/home_icon.png" alt="Home" className="w-10 h-10 rounded-full shadow-lg group-hover:shadow-xl transition-all duration-200 bg-white dark:bg-slate-800" />
-            <span className="hidden sm:inline text-xl font-extrabold tracking-tight text-blue-700 dark:text-white ml-1">Pj</span>
+            <img src="/Lets_Talk.png" alt="Home" className="w-10 h-10 rounded-full shadow-lg group-hover:shadow-xl transition-all duration-200 bg-white dark:bg-slate-800" />
+            <span className="hidden sm:inline text-xl font-extrabold tracking-tight text-blue-700 dark:text-white ml-1">Parag Jain</span>
           </button>
           {/* Contact Card Popover */}
           {contactOpen && (
@@ -74,9 +75,9 @@ const Navbar: React.FC = () => {
           )}
         </div>
         {/* Center: Navigation Links */}
-        <div className="hidden md:flex gap-8 items-center">
+        <div className="hidden md:flex gap-1.5 items-center">
           {navLinks.map(link => (
-            <Link key={link.name} href={link.href} className="text-slate-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-300 font-semibold text-base tracking-wide transition-colors duration-200 px-2 py-1 rounded-lg focus:text-blue-600 dark:focus:text-blue-300 focus:outline-none focus:ring-0 active:text-blue-700">
+            <Link key={link.name} href={link.href} className="text-slate-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-300 font-semibold text-base tracking-wide transition-colors duration-200 px-2 py-1 rounded-lg focus:outline-none focus:ring-0 active:text-blue-700">
               {link.name}
             </Link>
           ))}

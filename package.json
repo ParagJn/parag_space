@@ -1,5 +1,5 @@
 {
-  "homepage": "https://your-username.github.io/parag_space",
+  "homepage": "https://paragjn.github.io/parag_space",
   "name": "parag_space",
   "version": "0.1.0",
   "private": true,
@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out",
+    "export": "next export"
   },
   "dependencies": {
     "gh-pages": "^6.3.0",

@@ -1,33 +1,21 @@
 "use client";
 import React, { useState } from 'react';
 import ProjectCard from '../../components/ProjectCard';
+import projects from '../../data/projects';
 
-const projects = [
-	{
-		name: 'Project Titan',
-		description: 'Built a large-scale GenAI assistant for B2B integrations.',
-		tech: ['Python', 'LangChain', 'OpenAI', 'FastAPI'],
-		link: '#',
-	},
-	{
-		name: 'Visionary',
-		description: 'Developed a computer vision pipeline for medical imaging.',
-		tech: ['PyTorch', 'TensorFlow', 'Docker'],
-		link: '#',
-	},
-	{
-		name: 'InsightX',
-		description: 'Created a dashboard for real-time analytics and reporting.',
-		tech: ['React', 'Next.js', 'Tailwind CSS'],
-		link: '#',
-	},
-	{
-		name: 'HealthNLP',
-		description: 'NLP solution for extracting entities from patient records.',
-		tech: ['spaCy', 'FastAPI', 'PostgreSQL'],
-		link: '#',
-	},
-];
+const renderDescription = (desc: string) => {
+  // If the description contains line breaks, split and render each line as a professional list
+  return (
+    <ul className="space-y-2 pl-0 list-none">
+      {desc.split('\n').map((line, idx) => (
+        <li key={idx} className="flex items-start text-slate-700 text-base">
+          <span className="mr-2 text-lg">{line.trim().slice(0,2)}</span>
+          <span>{line.trim().slice(2)}</span>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 const ProjectsPage: React.FC = () => {
 	const [selected, setSelected] = useState<number | null>(null);
@@ -69,7 +57,7 @@ const ProjectsPage: React.FC = () => {
 									{projects[selected].name}
 								</h2>
 								<div className="text-slate-700 mb-2">
-									{projects[selected].description}
+									{renderDescription(projects[selected].description)}
 								</div>
 								<div className="mb-4">
 									<span className="font-semibold text-slate-800">
@@ -86,9 +74,19 @@ const ProjectsPage: React.FC = () => {
 										))}
 									</ul>
 								</div>
+								{/* Custom content for Productivity Assets */}
+								{projects[selected].name === 'Generative AI-based productivity assets' && (
+									<div className="mb-4">
+										<span className="font-semibold text-slate-800 block mb-1">Developed Assets:</span>
+										<ol className="list-decimal pl-6 text-slate-700 text-sm space-y-1">
+											<li>Technical Specification Document</li>
+											<li>Process Design Document</li>
+											<li>RFP Generator</li>
+										</ol>
+									</div>
+								)}
 								<div className="text-slate-500 text-sm">
-									This is some dummy content about the project. Replace with real
-									details later.
+									Details about the project. 
 								</div>
 							</div>
 						</div>

@@ -1,27 +1,68 @@
 import { NextRequest, NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
 
-// export const runtime = 'edge'; // Removed to allow access to process.env
+// Helper to get plain text content from a page file
+function getPageContent(page: string, filePath: string): string {
+  try {
+    const absPath = path.join(process.cwd(), 'src', 'app', filePath);
+    let content = fs.readFileSync(absPath, 'utf8');
+    // Remove imports/exports and JSX, keep only text content
+    content = content.replace(/<[^>]+>/g, ' ') // Remove JSX tags
+      .replace(/import .+?;|export .+?;/g, ' ') // Remove imports/exports
+      .replace(/\{[^}]*\}/g, ' ') // Remove JS expressions
+      .replace(/\s+/g, ' ') // Collapse whitespace
+      .trim();
+    return `${page}: ${content}`;
+  } catch {
+    return `${page}: [Could not load content]`;
+  }
+}
+
+function getAllPageContent() {
+  // List of pages to aggregate
+  const pages = [
+    { page: 'Home', file: 'page.tsx' },
+    { page: 'Projects', file: 'projects/page.tsx' },
+    { page: 'Work History', file: 'work-history/page.tsx' },
+    { page: 'Consulting Services', file: 'consulting-services/page.tsx' },
+  ];
+  // Get static page content
+  const staticContent = pages.map(p => getPageContent(p.page, p.file)).join('\n\n');
+  // Add project cards info
+  let projectsInfo = '';
+  try {
+    // Use a relative path from the API route file to the data file
+    const projects = require('../../../data/projects').default;
+    projectsInfo = '\n\nProjects List:\n' + projects.map((p: any, i: number) => {
+      return `${i+1}. ${p.name}\n   Description: ${p.description.replace(/\n/g, ' ')}\n   Technologies: ${p.tech.join(', ')}`;
+    }).join('\n');
+  } catch {
+    projectsInfo = '\n[Could not load project cards info]';
+  }
+  return staticContent + projectsInfo;
+}
 
 export async function POST(req: NextRequest) {
   const { messages } = await req.json();
-  // Try to get the API key from environment variable or .env.local
   const apiKey = process.env.OPENAI_API_KEY || process.env['OPENAI_API_KEY'];
   if (!apiKey) {
     return NextResponse.json({ answer: 'API key not set.' }, { status: 500 });
   }
 
-  // Use the website content as context (dummy for now, can be improved)
-  const context = `Parag's profile website. Home: Generative AI Engineer, Technology Strategist. Highlights: Led AI agent orchestration, Speaker at Generative AI conferences, Architected NLP for healthcare. Projects: Titan, Visionary, InsightX, HealthNLP. Work History: XYZ Corp, ABC HealthTech, DEF Innovations.`;
+  // Dynamically aggregate website content as context
+  const context = getAllPageContent();
+  // console.log('GPT4o-chat context:', context);
 
   const systemPrompt = `You are Parag's helpful AI assistant. Use the following website context to answer questions as helpfully as possible.\n\n${context}`;
 
   const body = {
-    model: 'gpt-4o',
+    model: 'gpt-4o-mini',
     messages: [
       { role: 'system', content: systemPrompt },
       ...messages
     ],
-    max_tokens: 300
+    max_tokens: 2000
   };
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {

@@ -65,7 +65,7 @@ const ChatBubble: React.FC = () => {
     <>
       {/* Floating Button */}
       <button
-        className="fixed z-50 bottom-[400px] right-6 p-0 w-14 h-14 flex items-center justify-center bg-transparent border-none hover:scale-105 transition-transform focus:outline-none"
+        className="fixed z-50 bottom-[250px] right-6 p-0 w-14 h-14 flex items-center justify-center bg-transparent border-none hover:scale-105 transition-transform focus:outline-none"
         aria-label="Open AI Chat"
         onClick={() => setOpen(true)}
         style={{ display: open ? 'none' : 'flex' }}

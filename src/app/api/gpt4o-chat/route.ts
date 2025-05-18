@@ -4,7 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   const { messages } = await req.json();
-  const apiKey = process.env.OPENAI_API_KEY;
+  // Try to get the API key from environment variable or .env.local
+  const apiKey = process.env.OPENAI_API_KEY || process.env['OPENAI_API_KEY'];
   if (!apiKey) {
     return NextResponse.json({ answer: 'API key not set.' }, { status: 500 });
   }

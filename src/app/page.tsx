@@ -7,7 +7,7 @@ export default function HomePage() {
       <div className="flex-1 flex flex-col justify-start">
         <div className="max-w-6xl mx-auto px-4 py-6">
           {/* Header Section */}
-          <header className="mb-6 text-center">
+          <header className="mb-6 text-center pt-[25px]">
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-800 mb-2" style={{ fontFamily: 'Aptos Display, sans-serif' }}>Parag Jain</h1>
             <h2 className="text-xl md:text-2xl text-blue-700 font-semibold mb-2">Generative AI Architect | Technology Strategist</h2>
             <p className="text-slate-600 italic mb-4">"Shaping intelligent automations   with AI-driven innovation."</p>

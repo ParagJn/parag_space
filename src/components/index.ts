@@ -6,3 +6,4 @@ export { default as HighlightCard } from './HighlightCard';
 export { default as ProjectCard } from './ProjectCard';
 export { default as WorkHistoryCard } from './WorkHistoryCard';
 // export { default as ChatBubble } from './ChatBubble';
+export { default as ConsultingServicesPage } from '../app/consulting-services/page';

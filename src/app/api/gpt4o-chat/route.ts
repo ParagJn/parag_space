@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+// Use ES6 import for data files
+import projects from '../../../data/projects';
+import timeline from '../../../data/timeline';
+import strengths from '../../../data/strengths';
+
 // Helper to get plain text content from a page file
 function getPageContent(page: string, filePath: string): string {
   try {
@@ -32,9 +37,8 @@ function getAllPageContent() {
   // Add project cards info
   let projectsInfo = '';
   try {
-    const projects = require('../../../data/projects').default;
-    projectsInfo = '\n\nProjects List:\n' + projects.map((p: any, i: number) => {
-      return `${i+1}. ${p.name}\n   Description: ${p.description.replace(/\n/g, ' ')}\n   Technologies: ${p.tech.join(', ')}`;
+    projectsInfo = '\n\nProjects List:\n' + projects.map((p, i) => {
+      return `${i+1}. ${p.name}\n   Description: ${Array.isArray(p.description) ? p.description.join(' ') : p.description}\n   Technologies: ${p.tech ? p.tech.join(', ') : ''}`;
     }).join('\n');
   } catch {
     projectsInfo = '\n[Could not load project cards info]';
@@ -42,8 +46,7 @@ function getAllPageContent() {
   // Add timeline info
   let timelineInfo = '';
   try {
-    const timeline = require('../../../data/timeline').default;
-    timelineInfo = '\n\nProfessional Timeline:\n' + timeline.map((t: any, i: number) => {
+    timelineInfo = '\n\nProfessional Timeline:\n' + timeline.map((t, i) => {
       return `${t.year}: ${t.title}${t.subtitle ? ' - ' + t.subtitle : ''}\n   ${t.description.replace(/\n/g, ' ')}`;
     }).join('\n');
   } catch {
@@ -52,8 +55,7 @@ function getAllPageContent() {
   // Add strengths info
   let strengthsInfo = '';
   try {
-    const strengths = require('../../../data/strengths').default;
-    strengthsInfo = '\n\nStrengths & Experience Highlights:\n' + strengths.map((s: any, i: number) => {
+    strengthsInfo = '\n\nStrengths & Experience Highlights:\n' + strengths.map((s, i) => {
       return `${i+1}. ${s.title}\n   Description: ${s.description}`;
     }).join('\n');
   } catch {

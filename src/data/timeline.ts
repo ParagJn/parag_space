@@ -53,7 +53,7 @@ With this project, my role also involved managing a large team and client at the
 
 The second and ongoing part of my journey from last 3 years has been focused on building Generative AI solutions for IBM's clients.
 I was part of the initial development team that built IBM Watsonx.ai and Watsonx.data based solutions and executing them as pilot program to showcase the capabilities of the generative AI services.
-Key highlight has been the development and implementation of "Generative AI based Fraud Detection" solution for IBM BPO Organization.
+Key highlight has been the development and implementation of "Multi-model, Agentic framework based Fraud Detection" solution for IBM BPO Organization.
 These days, I am hands-on developing & leading a team of excellent engineers to build a suite of productivity assets that leverage generative AI to automate and enhance SAP processes.
 The assets are modular and reusable, allowing for easy integration into existing workflows.`,
   },

@@ -49,7 +49,17 @@ function getAllPageContent() {
   } catch {
     timelineInfo = '\n[Could not load timeline info]';
   }
-  return staticContent + projectsInfo + timelineInfo;
+  // Add strengths info
+  let strengthsInfo = '';
+  try {
+    const strengths = require('../../../data/strengths').default;
+    strengthsInfo = '\n\nStrengths & Experience Highlights:\n' + strengths.map((s: any, i: number) => {
+      return `${i+1}. ${s.title}\n   Description: ${s.description}`;
+    }).join('\n');
+  } catch {
+    strengthsInfo = '\n[Could not load strengths info]';
+  }
+  return staticContent + projectsInfo + timelineInfo + strengthsInfo;
 }
 
 export async function POST(req: NextRequest) {

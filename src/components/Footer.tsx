@@ -1,26 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const Footer: React.FC = () => {
-  const [bottom, setBottom] = useState<number>(0);
-
-  useEffect(() => {
-    const updateBottom = () => {
-      // Example: set bottom to 5% of window height, or 0 if not enough space
-      const dynamicBottom = Math.max(window.innerHeight * 0.05, 0);
-      setBottom(dynamicBottom);
-    };
-    updateBottom();
-    window.addEventListener('resize', updateBottom);
-    return () => window.removeEventListener('resize', updateBottom);
-  }, []);
-
   return (
-    <footer
-      className="w-full bg-white border-t mt-4 py-6 text-center text-sm text-slate-500 flex flex-col items-center gap-2"
-      style={{ position: 'relative', bottom }}
-    >
+    <footer className="w-full bg-white border-t mt-4 py-6 pb-[5vh] text-center text-sm text-slate-500 flex flex-col items-center gap-2">
       <div className="flex gap-4 justify-center mb-2">
         <a
           href="https://github.com/ParagJn"

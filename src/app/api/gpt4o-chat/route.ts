@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
   const systemPrompt = `You are Parag's helpful AI assistant. Use the following website context to answer questions as helpfully as possible.\n\n${context}`;
 
   const body = {
-    model: 'gpt-4o-mini',
+    model: 'gpt-4.1-nano',
     messages: [
       { role: 'system', content: systemPrompt },
       ...messages

@@ -51,8 +51,8 @@ I was part of IBM's Data Platform CoE Competency with focus on driving solutions
 Key highlight was delivery of a Federal government mandated compliance solution for a large bank in California. The project has strict deadlines without any option of delays.
 With this project, my role also involved managing a large team and client at the same time using proven project management and agile methodologies.
 
-The second and ongoing part of my journey from last 3 years has been focused on building Generative AI solutions for IBM's clients.
-I was part of the initial development team that built IBM Watsonx.ai and Watsonx.data based solutions and executing them as pilot program to showcase the capabilities of the generative AI services.
+Over the past three years, I have pivoted to generative AI, contributing to the early development of IBMs Watsonx.ai and Watsonx.data solutions. 
+I ran the early adopter technology workshops for IBM's Watsonx.ai and Watsonx.data solutions, helping clients understand the potential of generative AI in their business processes.
 Key highlight has been the development and implementation of "Multi-model, Agentic framework based Fraud Detection" solution for IBM BPO Organization.
 These days, I am hands-on developing & leading a team of excellent engineers to build a suite of productivity assets that leverage generative AI to automate and enhance SAP processes.
 The assets are modular and reusable, allowing for easy integration into existing workflows.`,
